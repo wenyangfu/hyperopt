@@ -621,7 +621,8 @@ class Trials(object):
         # -- Stop-gap implementation!
         #    fmin should have been a Trials method in the first place
         #    but for now it's still sitting in another file.
-        import fmin as fmin_module
+        # import fmin as fmin_module  # Only works in Python 2
+        from .fmin import fmin  # Python 3 fix, found at https://github.com/hyperopt/hyperopt/issues/234
         return fmin_module.fmin(
             fn, space, algo, max_evals,
             trials=self,
